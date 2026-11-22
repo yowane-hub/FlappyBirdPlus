@@ -1,29 +1,20 @@
-public class Oiseau{
-    private double x;
-    private double y;
+public class Oiseau extends ObjetJeu{
     private double vitesseY;
     private int vies;
     private int pieces;
 
-    // constructeur de l'oiseau au début d'une partie
     public Oiseau(double x, double y){
-        this.x=x;
-        this.y=y;
+        //taille par défaut de l'oiseau : 34x24 pixels
+        super(x, y, 34, 24);
         this.vitesseY=0.0;
         this.vies=3;
         this.pieces=0;
     }
-
-    public double getX(){
-        return this.x;
-    }
-    public double getY(){
-        return this.y;
-    }
-    public int getVies() {
+    public int getVies(){
         return this.vies;
     }
-    public int getPieces() {
+
+    public int getPieces(){
         return this.pieces;
     }
 
@@ -31,13 +22,15 @@ public class Oiseau{
         this.vitesseY=-8.0;
     }
 
-    public void mettreAJourGravite() {
-        double gravite = 0.5;
-        this.vitesseY = this.vitesseY + gravite;
-        this.y = this.y + this.vitesseY;
+    //Implémentation obligatoire de la méthode abstraite de ObjetJeu
+    @Override 
+    public void mettreAJour(){
+        double gravite=0.5;
+        this.vitesseY=this.vitesseY+gravite;
+        this.y=this.y+this.vitesseY;
     }
 
-    public void perdreVie() {
+    public void perdreVies(){
         if (this.vies > 0) {
             this.vies = this.vies - 1;
         }
@@ -47,8 +40,9 @@ public class Oiseau{
         if (quantite > 0) {
             this.pieces = this.pieces + quantite;
         }
-    }public void afficherEtat() {
-        System.out.println("x=" + this.x + " | y=" + this.y + " | vitesseY=" + this.vitesseY + " | vies=" + this.vies + " | pieces=" + this.pieces);
     }
 
+    public void afficherEtat() {
+        System.out.println("Oiseau -> x=" + this.x + " | y=" + this.y + " | vies=" + this.vies + " | pieces=" + this.pieces);
+    }
 }
