@@ -1,3 +1,5 @@
+import java.awt.Rectangle;
+
 public abstract class ObjetJeu{
     protected double x;
     protected double y;
@@ -25,6 +27,11 @@ public abstract class ObjetJeu{
 
     public int getHauteur() {
         return this.hauteur;
+    }
+
+    // rectangle utillisé pour détecter les collisions
+    public Rectangle getHitbox(){
+        return new Rectangle((int) this.x, (int) this.y, this.largeur, this.hauteur);
     }
 
     // Chaque objet du jeu (oiseau, tuyau, bonus...) a sa propre façon de se mettre à jour
